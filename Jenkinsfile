@@ -1,0 +1,19 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Checkout the code from the Git repository
+                git url: 'https://github.com/beaula-12/jenkins.git'  // Replace with your repository URL
+            }
+        }
+        stage('Deploy') {
+            steps {
+                // Copy static files to the web server directory
+                sh 'mkdir -p /var/www/html'
+                sh 'cp -r * /var/www/html/'
+            }
+        }
+    }
+}
